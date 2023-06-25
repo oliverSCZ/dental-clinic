@@ -19,7 +19,7 @@ export const MainLayout: FC = () => {
 
 
       {/* MAIN */}
-      <Box component='main'>
+      <Box component='main' width='100%'>
           <Outlet/>
       </Box>
     </Box>
