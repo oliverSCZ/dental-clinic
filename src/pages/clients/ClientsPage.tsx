@@ -1,12 +1,28 @@
-import { Box, Typography } from '@mui/material'
-import  { FC } from 'react'
+import { FC, useContext } from 'react';
+import { UserContext } from '../../context';
 import { UsersTable } from '../../components'
+import { Box, Button, CircularProgress, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
 
 export const ClientsPage:FC = () => {
+
+  const { patients, isLoading } = useContext(UserContext);
+  const navigate = useNavigate()
   return (
     <Box component='main'>
-    <Typography variant='h1' mb='5'>Gestiona tus clientes</Typography>
-    <UsersTable/>
+      <Box display='flex' alignItems='center' justifyContent='space-between' mb={5}>
+      <Typography variant='h1' mb='5'>Gestiona tus clientes</Typography>
+      <Button onClick={() => navigate('/clients/new')}>Agregar Paciente</Button>
+    </Box>
+    {
+        isLoading ? (
+          <CircularProgress/>
+        )
+        :  (
+        <UsersTable users={ patients} />
+          )
+      }
+      
   </Box>
   )
 }
