@@ -5,7 +5,7 @@ import { UserContext } from '../../context';
 
 export const EmployeesPage:FC = () => {
 
-  const { patients, isLoading } = useContext(UserContext);
+  const { employees, isLoading, deleteEmployee } = useContext(UserContext);
   return (
     <Box component='main'>
       <Typography variant='h1' mb='5'>Gestiona tus empleados</Typography>
@@ -14,7 +14,7 @@ export const EmployeesPage:FC = () => {
           <CircularProgress/>
         )
         :  (
-        <UsersTable users={ patients} />
+        <UsersTable onDelete={deleteEmployee} users={ employees} />
           )
       }
       

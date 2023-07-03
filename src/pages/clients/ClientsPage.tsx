@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const ClientsPage:FC = () => {
 
-  const { patients, isLoading } = useContext(UserContext);
+  const { patients, isLoading, deletePatient } = useContext(UserContext);
   const navigate = useNavigate()
   return (
     <Box component='main'>
@@ -19,7 +19,7 @@ export const ClientsPage:FC = () => {
           <CircularProgress/>
         )
         :  (
-        <UsersTable users={ patients} />
+        <UsersTable onDelete={deletePatient} users={ patients} />
           )
       }
       
