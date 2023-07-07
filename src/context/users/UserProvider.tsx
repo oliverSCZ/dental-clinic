@@ -41,6 +41,11 @@ export const UserProvider:FC<PropsProvider> = ({ children }) => {
     }
   }
 
+  const createNewEmpleado =async (newEmployee: { ci: number; nombre: string; apellidos: string; descripcion: string; password: string; rol: number;}):Promise<void> => {
+    const { error } = await supabase.from('usuarios').insert([ newEmployee ]);
+    console.log(error)
+  }
+
   const deletePatient = async (id:number): Promise<void> => {
     try {
       const {error} = await supabase.from('pacientes').delete().eq('id', id)
@@ -78,7 +83,8 @@ export const UserProvider:FC<PropsProvider> = ({ children }) => {
           employees,
           createNewPatient,
           deletePatient,
-          deleteEmployee
+          deleteEmployee,
+          createNewEmpleado
         }}>
             { children }
         </UserContext.Provider>

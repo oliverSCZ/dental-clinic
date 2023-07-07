@@ -5,7 +5,7 @@ import { UserContext } from '../../context';
 import { generarContrasena } from '../../helpers';
 
 export const NewEmployeePage = () => {
-const { patients } = useContext(UserContext);
+const { createNewEmpleado } = useContext(UserContext);
 
 const [newEmployee, setNewEmployee] = useState({
   ci: 0,
@@ -29,6 +29,8 @@ const handleFormSelect = (e: SelectChangeEvent<number>) => {
 
 const handleSubmit = (e:FormEvent) => { 
   e.preventDefault();
+  console.log(newEmployee);
+  createNewEmpleado( newEmployee);
 }
 
   return (
@@ -75,7 +77,7 @@ const handleSubmit = (e:FormEvent) => {
           type='text'
           multiline={true}
           rows={4}
-          label='Agrega la descripcion'
+          label='Agrega el historial clinico'
           name='descripcion'
           value={newEmployee.descripcion}
           onChange={handleForm}
